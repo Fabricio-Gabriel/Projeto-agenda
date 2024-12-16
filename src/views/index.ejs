@@ -1,22 +1,15 @@
-<%- include('includes/head') %>
-<body>
-    
-    <section class="container">
-        <h1>
-            
-            <!-- <% numeros.forEach(n => { %>
-                <%= umaVariavelLocal %><br>
-            <% }); %> -->
-            <%= csrfToken %>
-        </h1>
+<%- include('includes/head')%>
+<%- include('includes/nav')%>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2"></div>
 
-        <form action="/" method="post">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <label for="">Cliente: 
-                <input type="text" name="cliente" id="">
-                <button>Submit</button>
-            </label>
-        </form>
-    </section>
+            <div class="col-lg-8 my-5">
+                <h1 class="text-center">Agenda</h1>
+                <p class="text-center lead">Seus contatos estão a baixo.</p>
+            </div>
 
-<%- include('includes/footer') %>
+            <div class="col-lg-2"></div>
+        </div>
+    </div>
+<%- include('includes/footer')%>
