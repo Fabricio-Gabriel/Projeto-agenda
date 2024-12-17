@@ -7,7 +7,7 @@ const LoginSchema = new mongoose.Schema({
     password: { type: String, required: true}
 });
 
-const LoginModel = mongoose.model('Login', HomeSchema);
+const LoginModel = mongoose.model('Login', LoginSchema);
 
 class Login {
     constructor(body) {
@@ -16,8 +16,14 @@ class Login {
         this.user = null;
     }
 
-    register() {
+    async register() {
         this.valida();
+        if(this.errors.length > 0) return;
+        try{
+            this.user = await LoginModel.create(this.body);
+        } catch(e) {
+            console.log(e);
+        }
     }
 
     valida() {
@@ -31,6 +37,7 @@ class Login {
         if(this.body.password.length < 3 || this.body.password.length > 50) {
             this.errors.push('A senha precisa ter entre 3 e 50 caracteres!');
         }
+
     }
 
     cleanUp() {
