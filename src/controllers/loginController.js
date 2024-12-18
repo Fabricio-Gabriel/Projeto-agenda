@@ -24,6 +24,7 @@ exports.register = async (req, res) => {
             const url = req.get("Referer") || "/login/index";
             return res.redirect(url);
         });
+
         
     } catch (e) {
         console.log(e);
