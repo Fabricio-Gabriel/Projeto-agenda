@@ -9,6 +9,8 @@ route.get('/', homeController.index);
 //ROTAS LOGIN
 route.get('/login/index', loginController.index);
 route.post('/login/register', loginController.register);
+route.post('/login/login', loginController.login);
+route.get('/login/logout', loginController.logout);
 
 
 
