@@ -23,10 +23,6 @@ class Contato {
 
         if(this.errors.length > 0) return;
 
-        await this.checkData();
-
-        if(this.errors.length > 0) return;
-
         this.contato = await ContatoModel.create(this.body);
     }
 
@@ -36,17 +32,16 @@ class Contato {
         return user;
     }
 
-    async checkData() {
-        try {
-            const email = await ContatoModel.findOne({ email: this.body.email });
+   
 
-            if(email) this.errors.push('Este E-mail já existe em um dos contatos');
+    async edit(id) {
+        if(typeof id !== 'string') return;
+        
+        this.valida();
 
-            return;
-        } catch(e) {
-            console.log(e);
-        }
+        if(this.errors.length > 0) return;
 
+        this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, {new: true});
     }
 
 
