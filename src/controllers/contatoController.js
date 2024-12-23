@@ -52,8 +52,7 @@ exports.edit = async (req, res) => {
         if (contato.errors.length > 0) {
             req.flash('errors', contato.errors);
             req.session.save(() => {
-                const backURL = req.get('Referer') || `/contato/index/${contato.contato._id}`;
-                res.redirect(backURL);
+                res.redirect('/');      
             });
             return;
         }
@@ -68,4 +67,16 @@ exports.edit = async (req, res) => {
         res.render('404');
     }
     
+};
+
+exports.delete = async (req, res) => {
+    if (!req.params.id) return res.render('404');
+
+    const contato = await Contato.delete(req.params.id);
+    if (!contato) return res.render('404');
+
+    req.flash('success', 'Contato excluido com sucesso!');
+    req.session.save(() => {
+        res.redirect('/');
+    });
 };
