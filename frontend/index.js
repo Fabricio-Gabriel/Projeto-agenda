@@ -16,13 +16,16 @@
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
+import Login from './modules/login';
+import Contato from './modules/contato';
 // import './assets/css/style.css';
 
-import Login from './modules/login';
-
+//INSTANCIANDO VALIDAÇÃO LOGIN
 const cadastro = new Login('.form-cadastro');
 const login = new Login('.form-login');
-
 login.init();
 cadastro.init();
+
+//INSTANCIADO VALIDAÇÃO CONTATO
+const contato = new Contato('.form-contato');
+contato.init();
