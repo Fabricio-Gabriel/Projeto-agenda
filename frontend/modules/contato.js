@@ -30,24 +30,24 @@ export default class Contato {
         let error = false;
 
         if(!inputNome.value) {
-            this.criaErro('Nome é obrigatório.', inputNome);
+            this.errorMessage('Nome é obrigatório.', inputNome);
             console.log('passei pelo nome');
             error = true;
         }
 
         if (!validator.isEmail(inputEmail.value)) {
-            this.criaErro('E-mail inválido.', inputEmail);
+            this.errorMessage('E-mail inválido.', inputEmail);
             error = true;
         }
 
         if (!inputEmail.value && !inputTelefone.value) {
-            this.criaErro('Pelo menos o e-mail ou o telefone devem ser preenchidos!', inputEmail);
-            this.criaErro('Pelo menos o e-mail ou o telefone devem ser preenchidos!', inputTelefone);
+            this.errorMessage('Pelo menos o e-mail ou o telefone devem ser preenchidos!', inputEmail);
+            this.errorMessage('Pelo menos o e-mail ou o telefone devem ser preenchidos!', inputTelefone);
             error = true;
         }
 
         if (inputTelefone.value.length !== 11) {
-            this.criaErro('O telefone deve ter 11 digitos', inputTelefone);
+            this.errorMessage('O telefone deve ter 11 digitos', inputTelefone);
             error = true;
         }
 
@@ -55,7 +55,7 @@ export default class Contato {
     }
 
 
-    criaErro(msg, input) {
+    errorMessage(msg, input) {
         const div = document.createElement("div");
         div.classList.add('error-message');
         input.insertAdjacentElement("afterend", div);
